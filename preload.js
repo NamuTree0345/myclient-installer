@@ -1,7 +1,12 @@
-const { ipcRenderer } = require('electron')
+const { ipcRenderer, dialog, BrowserWindow, BrowserView } = require('electron')
 
 window.addEventListener('DOMContentLoaded', () => {
     ipcRenderer.send('loadVersions')
+    const installButton = document.getElementById('install')
+    const tab = document.getElementById('versions')
+    installButton.onclick = (ev) => {
+        ipcRenderer.send('install', tab.value)
+    }
 })
 
 ipcRenderer.on('loadedVersions', (event, versions) => {

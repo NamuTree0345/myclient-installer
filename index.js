@@ -35,3 +35,27 @@ ipcMain.on('loadVersions', (event) => {
         event.reply('loadedVersions', arr)
     })
 })
+
+ipcMain.on('install', (event, arg0) => {
+    if(!arg0.includes('추천')) {
+        const opt = dialog.showMessageBoxSync(window, {
+            
+            buttons: ['Yes','No'],
+            message: '이 옵션은 추천하지 않습니다. 설치하시겠습니까?',
+        })
+        console.log(opt)
+        if(opt === 0) {
+            doInstall(arg0)
+            return
+        } else {
+            return
+        }
+        
+    }
+    doInstall(arg0)
+    return
+})
+
+function doInstall() {
+    console.log('Loading...')
+}
