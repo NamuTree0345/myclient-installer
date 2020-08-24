@@ -1,0 +1,30 @@
+{
+  "name": "myclient_installer",
+  "version": "1.0.0",
+  "description": "Minecraft MyClient Installer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NamuTree0345/myclient-installer.git"
+  },
+  "keywords": [
+    "myclient",
+    "minecraft"
+  ],
+  "author": "NamuTree0345",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/NamuTree0345/myclient-installer/issues"
+  },
+  "homepage": "https://github.com/NamuTree0345/myclient-installer#readme",
+  "devDependencies": {
+    "electron": "^9.2.1"
+  },
+  "dependencies": {
+    "request": "^2.88.2"
+  }
+}
