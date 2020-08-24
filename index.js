@@ -1,4 +1,4 @@
-const { ipcMain, app, BrowserWindow } = require('electron')
+const { ipcMain, app, BrowserWindow, dialog } = require('electron')
 const path = require('path')
 const request = require('request')
 let window
@@ -24,8 +24,9 @@ ipcMain.on('loadVersions', (event) => {
     }, (err, res, body) => {
         if(err) {
             console.error(err)
-            event.reply('loadedVersions', ['불러오는데 실패하였습니다. 재시작해주세요.'])
-            return
+            event.reply('loadedVersions', ['불러오는데 실패하였습니다. 재시작해주세요.']) 
+            dialog.showErrorBox('오류!', '불러오는데 실패하였습니다. 재시작해주세요.')
+            process.exit(1)
         }
         const oldvers = JSON.parse(body).oldVersions
         const latest = JSON.parse(body).latest
