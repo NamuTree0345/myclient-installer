@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "electron .",
+    "dist": "electron-builder -w"
   },
   "repository": {
     "type": "git",
@@ -27,5 +28,21 @@
   },
   "dependencies": {
     "request": "^2.88.2"
+  },
+  "build": {
+    "productName": "MyClient Installer",
+    "appId": "xyz.gwcr.honran.namutree0345.myclient.installer",
+    "asar": true,
+    "win": {
+      "target": [
+        "zip"
+      ],
+      "icon": "./resources/installer/Icon.ico"
+    },
+    "directories": {
+      "buildResources": "./resources/installer/",
+      "output": "./dist/",
+      "app": "."
+    }
   }
 }

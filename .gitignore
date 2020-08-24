@@ -1,2 +1,9 @@
 # Node module
 node_modules
+
+# Dist
+dist
+resources
+
+# MyClient
+MyClient.jar

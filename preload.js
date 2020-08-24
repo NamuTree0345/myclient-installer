@@ -23,3 +23,16 @@ ipcRenderer.on('loadedVersions', (event, versions) => {
 
     verList.innerHTML = inner
 })
+
+ipcRenderer.on('download0', (event) => {
+    document.getElementById('hidden').style.display = 'none'
+    document.getElementById('dddd').innerHTML = '설치중... 1/3, 메인 JAR 다운로드'
+})
+
+ipcRenderer.on('downloaded1', (event) => {
+    document.getElementById('dddd').innerHTML = '설치중... 2/3, JSON 다운로드'
+})
+
+ipcRenderer.on('downloaded2', (event) => {
+    document.getElementById('dddd').innerHTML = '설치중... 3/3, 복사'
+})

@@ -2,6 +2,8 @@ const { ipcMain, app, BrowserWindow, dialog } = require('electron')
 const path = require('path')
 const request = require('request')
 let window
+const util = require('./util')
+const fs = require('fs')
 
 app.whenReady().then(() => {
     window = new BrowserWindow({
@@ -45,17 +47,27 @@ ipcMain.on('install', (event, arg0) => {
         })
         console.log(opt)
         if(opt === 0) {
-            doInstall(arg0)
+            doInstall(arg0, event)
             return
         } else {
             return
         }
         
     }
-    doInstall(arg0)
+    doInstall(arg0, event)
     return
 })
 
-function doInstall() {
+function doInstall(tab, event) {
     console.log('Loading...')
+    console.log('DL0')
+    event.reply('download0')
+    util.downloadFile('http://localhost:53573/download_client/' + tab.replace('(추천)', ''), fs.createWriteStream('./MyClient.jar'), () => {
+        console.log('DL1 complete')
+        event.reply('downloaded1')
+        util.downloadFile('http://localhost:53573/download_json/' + tab.replace('(추천)', ''), fs.createWriteStream('./MyClient.json'), () => {
+            console.log('DL2 complete')
+            event.reply('downloaded2')
+        })
+    })
 }
